@@ -3,51 +3,29 @@ During my internship, I designed and implemented Linux-related exam preparation 
 The tasks covered both standard Linux commands and more advanced pipeline-based commands. The focus areas included file management, process control, permissions, networking tools, log analysis, and system administration.
 
 ## Bash / Linux Command Tasks
-
 The exercises included practical command-line tasks such as:
 
-### File and Directory Management
-cp, mv, mkdir, rm, pwd, ls -l
-
-### File Content Processing
-cat, less, head, tail
-wc, sort, uniq
-grep, awk
-
-### Combined pipelines such as:
-cat | grep
-cat | sort | uniq
-cat | wc
-ls -l | awk
-
-### Permissions and Ownership
-chmod
-chown
-
-### Process Management
-ps -e
-killall
-sudo
-
-### System and Service Management
-systemctl
-journalctl
-journalctl | grep | tail
-journalctl -xe | grep
-
-### Networking and Diagnostics
-netstat
-tcpdump
-traceroute
-curl
-wget
-ip -a
-
-### Package Management and Documentation
-dpkg
-man
+File and directory management (cp, mv, mkdir, rm, ls -l)
+Text processing and pipelines (grep, awk, sort, uniq, wc)
+Permissions and ownership (chmod, chown)
+Process management (ps, killall)
+System services and logs (systemctl, journalctl)
+Networking tools (netstat, tcpdump, curl, wget)
+Package management (dpkg)
 
 Some tasks validated the result by executing the student's Bash command inside a sandboxed environment and comparing the output to the expected result. Other tasks used Python-based validation logic to check whether the student provided the correct command syntax.
 The goal was to simulate real-world Linux usage rather than simple multiple-choice questions.
 
 ## C Programming Tasks for Linux
+In addition to Bash exercises, I implemented C programming tasks focused on Linux system-level programming. These tasks were also automatically graded using CodeRunner.
+The student’s function implementation was embedded into a predefined test program, compiled with strict flags (-Wall -Werror), and executed automatically to verify correctness.
+
+Topics included:
+File access checks (access, R_OK)
+File size and permissions handling
+Directory operations (mkdir, directory listing)
+Process management (fork, PID, UID)
+Executing shell commands
+System uptime retrieval
+
+This project combined Linux system administration, systems programming, and automation into a scalable and production-ready exam environment.
