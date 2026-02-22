@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 6  -->
+  <question type="coderunner">
+    <name>
+      <text>C read line length from file</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[
+        <p>Write a function <code>line_length</code> that opens the file <code>helper.txt</code>, reads the first line using <code>fgets</code>, and returns the length of that line using <code>strlen</code>.</p>
+        <p>You may assume the file always exists and contains at least one line. Do not print anything or check for errors.</p>
+      ]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_function</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>10</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[
+#include <stdio.h>
+#include <string.h>
+
+{{ STUDENT_ANSWER }}
+
+int main() {
+    FILE *f = fopen("helper.txt", "w");
+    fprintf(f, "Hello\n");
+    fclose(f);
+
+    printf("%d\n", line_length());
+    return 0;
+}
+]]></template>
+    <iscombinatortemplate>0</iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[
+int line_length(void) {
+    char line[1000];
+    FILE *f = fopen("helper.txt", "r");
+    fgets(line, sizeof(line), f);
+    fclose(f);
+    return strlen(line);
+}
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang>c_cpp</acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams>{"CFLAGS": "-Wall -Werror"}</sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text></text>
+      </testcode>
+      <stdin>
+                <text></text>
+      </stdin>
+      <expected>
+                <text>6</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+    </testcases>
+  </question>
+
+</quiz>

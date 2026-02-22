@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 8  -->
+  <question type="coderunner">
+    <name>
+      <text>C count files in current directory</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Write a function <code>count_files</code> that receives a path to a directory and returns the number of entries in it excluding <code>.</code> and <code>..</code>. Use <code>opendir()</code>opendir() and <code>readdir()</code>. </p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_function</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>30</answerboxlines>
+    <answerboxcolumns>200</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[
+#include <stdio.h>
+#include <sys/stat.h>
+#include <dirent.h>
+#include <string.h>
+
+{{ STUDENT_ANSWER }}
+
+int main(){
+{{ TEST.testcode }}
+    return 0;
+}
+]]></template>
+    <iscombinatortemplate>0</iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[
+#include <dirent.h>
+#include <string.h>
+
+int count_files(const char *path) {
+    DIR *dir = opendir(path);
+    if (!dir) return -1;
+    struct dirent *e;
+    int count = 0;
+    while ((e = readdir(dir))) {
+        if (strcmp(e->d_name, ".") && strcmp(e->d_name, "..")) {
+            count++;
+        }
+    }
+    closedir(dir);
+    return count;
+}
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang>sh</acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams>{"CFLAGS": "-Wall -Werror"}</sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text><![CDATA[
+#include <sys/stat.h>
+mkdir("testdir",0755);
+FILE *f = fopen("testdir/a","w"); if(f) fclose(f);
+f = fopen("testdir/b","w"); if(f) fclose(f);
+printf("%d\n", count_files("testdir"))
+]]></text>
+      </testcode>
+      <stdin>
+                <text></text>
+      </stdin>
+      <expected>
+                <text>2</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+    </testcases>
+  </question>
+
+</quiz>

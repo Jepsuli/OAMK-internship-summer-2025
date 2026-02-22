@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 16  -->
+  <question type="coderunner">
+    <name>
+      <text>C get file size</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[
+        <p>Write a function <code>long get_file_size(const char *filename);</code> that returns the size of the given file in bytes.
+        If the file cannot be opened, return -1. You may use standard C file I/O functions such as <code>fopen()</code>, <code>fseek()</code>, <code>ftell()</code>, and <code>fclose()</code>. ]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_function</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>10</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[
+#include <stdio.h>
+#include <string.h>
+
+{{ STUDENT_ANSWER }}
+
+int main() {
+    FILE *fp = fopen("test.txt", "w");
+    for (int i = 0; i < 50; ++i) fputc('A', fp);
+    fclose(fp);
+
+    printf("%ld\n", get_file_size("test.txt"));
+    return 0;
+}
+]]></template>
+    <iscombinatortemplate>0</iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[
+long get_file_size(const char *filename){
+    FILE *fp = fopen(filename, "rb");
+    if (!fp) return -1;
+
+    fseek(fp, 0, SEEK_END);
+    long size = ftell(fp);
+    fclose(fp);
+    return size;
+}
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang>c_cpp</acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams>{"CFLAGS": "-Wall -Werror"}</sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text></text>
+      </testcode>
+      <stdin>
+                <text></text>
+      </stdin>
+      <expected>
+                <text>50</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+    </testcases>
+  </question>
+
+</quiz>

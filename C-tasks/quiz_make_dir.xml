@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 7  -->
+  <question type="coderunner">
+    <name>
+      <text>C create directory with mkdir</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Write a function taht creates a directory named <code>test_dir</code>. Return 0 if the directory was successfully created or already exists, otherwise return -1.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_function</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>10</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <errno.h>
+
+{{ STUDENT_ANSWER }}
+
+int main(){
+{{ TEST.testcode}}
+    return 0;
+}
+]]></template>
+    <iscombinatortemplate>0</iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[
+#include <sys/stat.h>
+#include <errno.h>
+
+int make_directory() {
+  if(mkdir("test_dir", 0755) == 0 || errno == EEXIST){
+    return 0;
+  }
+  return -1;
+}
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang>sh</acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams>{"CFLAGS": "-Wall -Werror"}</sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text><![CDATA[
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int result = make_directory();
+if (result != 0){
+    printf("FAIL\n");
+    return 1;
+}
+if (access("test_dir", F_OK) == 0){
+    printf("OK\n");
+} else{
+    printf("FAIL\n");
+}]]></text>
+      </testcode>
+      <stdin>
+                <text></text>
+      </stdin>
+      <expected>
+                <text>OK</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+    </testcases>
+  </question>
+
+</quiz>

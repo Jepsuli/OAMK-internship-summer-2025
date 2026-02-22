@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 12  -->
+  <question type="coderunner">
+    <name>
+      <text>C function change permissions</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Write a C function <code>int make_read_only(const char *filename);</code> that changes the permissions of the file given by <code>filename</code> so that it is readable only (no write or execute permissions for anyone).
+The function should return 0 on success and -1 on failure.
+Do not print anything.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_function</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>30</answerboxlines>
+    <answerboxcolumns>200</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+
+{{ STUDENT_ANSWER }}
+
+int main() {
+    {{ TEST.testcode }}
+    return 0;
+}
+]]></template>
+    <iscombinatortemplate>0</iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[
+int make_read_only(const char *filename) {
+    return chmod(filename, S_IRUSR | S_IRGRP | S_IROTH);
+}
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang>sh</acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams>{"CFLAGS": "-Wall -Werror"}</sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+        <testcode>
+                <text><![CDATA[
+FILE *fp = fopen("test.txt", "w");
+fprintf(fp, "data");
+fclose(fp);
+make_read_only("test.txt");
+struct stat st;
+stat("test.txt", &st);
+printf("%o\n", st.st_mode & 0777);
+]]></text>
+        </testcode>
+        <stdin>
+                <text></text>
+        </stdin>
+        <expected>
+                <text>444</text>
+        </expected>
+        <extra>
+                <text></text>
+        </extra>
+        <display>
+                <text>SHOW</text>
+        </display>
+      </testcase>
+    </testcases>
+  </question>
+</quiz>

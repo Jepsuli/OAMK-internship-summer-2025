@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 21  -->
+  <question type="coderunner">
+    <name>
+      <text>C echo input</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Write a function <code>int echo_input()</code> that reads a single line of input from the user using <code>fgets</code> and prints it using <code>printf</code>. The function should return 1 on success and -1 on error.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_function</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>30</answerboxlines>
+    <answerboxcolumns>200</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[
+#include <stdio.h>
+
+{{ STUDENT_ANSWER }}
+
+int main() {
+    int result = echo_input();
+    printf("%d\n", result);
+    return 0;
+}
+]]></template>
+    <iscombinatortemplate>0</iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[
+int echo_input() {
+    char buf[1024];
+    if (fgets(buf, sizeof(buf), stdin) == NULL)
+      return -1;
+    printf("%s",buf);
+    return 1;
+}
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang>sh</acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams>{"CFLAGS": "-Wall -Werror"}</sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+        <testcode>
+                <text><![CDATA[
+int result = echo_input();
+printf("%d\n", result);
+]]></text>
+        </testcode>
+        <stdin>
+                <text>Hello world!</text>
+        </stdin>
+        <expected>
+                <text>Hello world!
+1</text>
+        </expected>
+        <extra>
+                <text></text>
+        </extra>
+        <display>
+                <text>SHOW</text>
+        </display>
+      </testcase>
+  <testcase>
+        <testcode>
+                <text><![CDATA[
+int result = echo_input();
+printf("%d\n", result);
+]]></text>
+        </testcode>
+        <stdin>
+                <text>Testirivi 123!</text>
+        </stdin>
+        <expected>
+                <text>Testirivi 123!
+1</text>
+        </expected>
+        <extra>
+                <text></text>
+        </extra>
+        <display>
+                <text>SHOW</text>
+        </display>
+  </testcase>
+      <testcase>
+      <testcode>
+                <text><![CDATA[
+int result = echo_input();
+if (result != 1) printf("%d\n", result);
+]]></text>
+      </testcode>
+        <stdin>
+                <text></text>
+        </stdin>
+        <expected>
+                <text>-1</text>
+        </expected>
+
+      </testcase>
+    </testcases>
+  </question>
+</quiz>

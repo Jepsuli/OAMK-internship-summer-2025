@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 20  -->
+  <question type="coderunner">
+    <name>
+      <text>C Write and delete a file</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Write a function <code>int write_and_delete</code> that creates a file called <code>temp.txt</code>, writes something to it, closes it, and deletes it. The function should return 1 on success and -1 on error. Do not print anything in your function.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_function</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>30</answerboxlines>
+    <answerboxcolumns>200</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[
+#include <stdio.h>
+#include <unistd.h>
+
+{{ STUDENT_ANSWER }}
+
+int main() {
+    int res = write_and_delete();
+    printf("%d\n", res);
+    return 0;
+}
+]]></template>
+    <iscombinatortemplate>0</iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[
+int write_and_delete() {
+    FILE *f = fopen("temp.txt", "w");
+    if (!f) return -1;
+    fprintf(f, "Hello\n");
+    fclose(f);
+    return unlink("temp.txt") == 0 ? 1 : -1;
+}
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang>sh</acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams>{"CFLAGS": "-Wall -Werror"}</sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+        <testcode>
+                <text></text>
+        </testcode>
+        <stdin>
+                <text></text>
+        </stdin>
+        <expected>
+                <text>1</text>
+        </expected>
+        <extra>
+                <text></text>
+        </extra>
+        <display>
+                <text>SHOW</text>
+        </display>
+      </testcase>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+        <testcode>
+                <text>unlink("temp.txt");</text>
+        </testcode>
+        <expected>
+                <text>1</text>
+        </expected>
+        <display>
+                <text>SHOW</text>
+        </display>
+      </testcase>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+        <testcode>
+                <text>FILE *tmp = fopen("temp.txt", "w");
+                      if (tmp) { fprintf(tmp, "x"); fclose(tmp); }</text>
+        </testcode>
+        <expected>
+                <text>1</text>
+        </expected>
+      </testcase>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+        <testcode>
+                <text>system("rm -f temp.txt");</text>
+        </testcode>
+        <expected>
+                <text>1</text>
+        </expected>
+      </testcase>
+    </testcases>
+  </question>
+</quiz>

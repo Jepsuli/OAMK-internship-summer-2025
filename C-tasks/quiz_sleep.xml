@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 21  -->
+  <question type="coderunner">
+    <name>
+      <text>C sleep seconds</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Write a function <code>int sleep_seconds(int seconds)</code> that waits the given number of seconds using <code>sleep()</code>. Return 1 if sleep succeeds, or -1 if input is invalid (e.g., negative number).
+Do not print anything inside your function.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_function</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>30</answerboxlines>
+    <answerboxcolumns>200</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[
+#include <stdio.h>
+#include <unistd.h>
+#include <time.h>
+
+{{ STUDENT_ANSWER }}
+
+int main() {
+    struct timespec start, end;
+    clock_gettime(CLOCK_MONOTONIC, &start);
+    int res = sleep_seconds(2);
+    clock_gettime(CLOCK_MONOTONIC, &end);
+
+    double elapsed = end.tv_sec - start.tv_sec + (end.tv_nsec - start.tv_nsec)
+    printf("%d\n", res);
+    printf("%.0f\n", elapsed); //tulostaa sekunteina pyoristettyna
+    return 0;
+}
+]]></template>
+    <iscombinatortemplate>0</iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[
+int sleep_seconds(int seconds) {
+    if (seconds < 0)
+        return -1;
+    sleep(seconds);
+    return 1;
+}
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang>sh</acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams>{"CFLAGS": "-Wall -Werror"}</sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+        <testcode>
+                <text></text>
+        </testcode>
+        <expected>
+                <text>1
+2</text>
+        </expected>
+        <display>
+                <text>SHOW</text>
+        </display>
+      </testcase>
+  <testcase>
+        <testcode>
+                <text><![CDATA[
+                sleep_seconds(-5);
+                ]]></text>
+        </testcode>
+        <expected>
+                <text>1
+0</text>
+        </expected>
+        <display>
+                <text>SHOW</text>
+        </display>
+  </testcase>
+      <testcase>
+      <testcode>
+                <text><![CDATA[
+sleep_seconds(1);
+]]></text>
+      </testcode>
+        <expected>
+                <text>1
+1</text>
+        </expected>
+
+      </testcase>
+    </testcases>
+  </question>
+</quiz>

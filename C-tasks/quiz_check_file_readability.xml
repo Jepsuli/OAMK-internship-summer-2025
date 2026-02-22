@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 18  -->
+  <question type="coderunner">
+    <name>
+      <text>C check file readability</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Write a function <code>int file_is_readable(const char *filename);</code> that  returns 1 if the file given by <code>filename</code> is readable by the current user, and 0 otherwise. Use the <code>R_OK</code> flag.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>c_function</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>30</answerboxlines>
+    <answerboxcolumns>200</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/stat.h>
+
+{{ STUDENT_ANSWER }}
+
+int main() {
+    // Luo tiedosto, johon on lukuoikeus
+    FILE *f = fopen("readable.txt", "w");
+    if (f) {
+        fprintf(f, "Hello");
+        fclose(f);
+    }
+
+    // Luo tiedosto ilman lukuoikeuksia
+    FILE *f2 = fopen("test.txt", "w");
+    if (f2) {
+        fprintf(f2, "No read");
+        fclose(f2);
+        chmod("test.txt", 0000);  // Poista kaikki oikeudet
+    }
+
+    int res1 = file_is_readable("readable.txt");
+    int res2 = file_is_readable("nonexistent.txt");
+    int res3 = file_is_readable("test.txt");
+
+    printf("%d\n%d\n%d\n", res1, res2, res3);
+    return 0;
+}
+]]></template>
+    <iscombinatortemplate>0</iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[
+int file_is_readable(const char *filename) {
+    return access(filename, R_OK) == 0 ? 1 : 0;
+}
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang>sh</acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams>{"CFLAGS": "-Wall -Werror"}</sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
+        <testcode>
+                <text></text>
+        </testcode>
+        <stdin>
+                <text></text>
+        </stdin>
+        <expected>
+                <text>1
+0
+0</text>
+        </expected>
+        <extra>
+                <text></text>
+        </extra>
+        <display>
+                <text>SHOW</text>
+        </display>
+      </testcase>
+    </testcases>
+  </question>
+</quiz>
